@@ -5,12 +5,15 @@ import java.text.DecimalFormat;
 public class Produto {
 	
 	private String nome;
-	private Double preco; //Valor do produto - deve ser um valor positivo (setar 'null' caso contrário)
+	private Double preco; 
 	
 	public Produto(String nome, Double preco) {
 		super();
 		this.nome = nome;
-		this.preco = preco;
+		if (preco >= 0D)
+			this.preco = preco;
+		else
+			this.preco = null;
 	}
 	
 	public String getNome() {
@@ -23,11 +26,15 @@ public class Produto {
 		return preco;
 	}
 	public void setPreco(Double preco) {
-		this.preco = preco;
+		if (preco >= 0D)
+			this.preco = preco;
+		else
+			this.preco = null;
 	}
 	
 	public String verDados() {
-		DecimalFormat df = new DecimalFormat("0.00"); //Formatando o preço com 2 casas decimais
-		return "Nome: " + this.nome + "\nPreço: R$ " + df.format(this.preco); 
+		DecimalFormat df = new DecimalFormat("0.00");
+		return "Nome: " + this.nome + 
+			   "\nPreço: R$ " + df.format(this.preco); 
 	}
 }
